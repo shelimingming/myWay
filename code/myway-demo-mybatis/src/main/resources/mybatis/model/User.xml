@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myway.demo.mybatis.dao.IUser">
+    <select id="GetUserByID" parameterType="int" resultType="User">
+        select * from `user` where id = #{id}
+    </select>
+
+    <select id="getUser" parameterType="int"
+            resultType="User">
+        SELECT *
+        FROM USER
+        WHERE id = #{userId}
+    </select>
+
+
+    <insert id="insertUser" parameterType="User">
+        INSERT INTO USER(acct, name, createTime, lastLoginTime, mobile, email, description, status)
+        VALUES(#{acct}, #{name}, #{createTime}, #{lastLoginTime}, #{mobile}, #{email}, #{description}, #{status})
+    </insert>
+
+    <select id="getUserList" resultType="User">
+        SELECT * FROM USER
+    </select>
+
+    <update id="updateUser" parameterType="User">
+        UPDATE USER
+        SET
+        acct=#{acct},
+        name = #{name},
+        createTime = #{createTime},
+        lastLoginTime=#{lastLoginTime},
+        mobile=#{mobile},
+        email=#{email},
+        description=#{description},
+        status = #{status}
+        WHERE
+        id =
+        #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM USER WHERE id = #{id}
+    </delete>
+</mapper>

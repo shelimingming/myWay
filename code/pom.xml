@@ -11,6 +11,7 @@
     <modules>
         <module>myway-discovery-eureka</module>
         <module>myway-RBAC</module>
+        <module>myway-demo-mybatis</module>
     </modules>
 
 
