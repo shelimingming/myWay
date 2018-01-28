@@ -32,7 +32,7 @@ public class HelloWord {
     public static void main(String[] args) {
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            User user = (User) session.selectOne("com.myway.demo.mybatis.domain.UserMapper.GetUserByID", 1);
+            User user = (User) session.selectOne("com.myway.demo.mybatis.dao.IUser.GetUserByID", 1);
             if(user!=null){
                 System.out.println(user);
             }

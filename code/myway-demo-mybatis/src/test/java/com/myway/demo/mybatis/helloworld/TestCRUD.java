@@ -42,12 +42,8 @@ public class TestCRUD {
             System.out.println("Test insert start...");
             // 执行插入
             User user = new User();
-            user.setEmail("1@qq.com");
             user.setName("sheliming");
-            user.setAcct("sheliming");
             user.setCreateTime(new Date());
-            user.setMobile("123456789");
-            user.setStatus("1");
 
             userMapper.insertUser(user);
             // 提交事务
