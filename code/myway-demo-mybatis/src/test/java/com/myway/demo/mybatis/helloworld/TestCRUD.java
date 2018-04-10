@@ -132,7 +132,6 @@ public class TestCRUD {
      */
     private static void printUsers(final List<User> users) {
         int count = 0;
-
         for (User user : users) {
             System.out.println(user);
         }

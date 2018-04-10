@@ -8,11 +8,12 @@
     <artifactId>myway-parent</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>myway-discovery-eureka</module>
         <module>myway-RBAC</module>
         <module>myway-demo-mybatis</module>
+        <module>myway-demo-hsql</module>
     </modules>
-
 
 </project>
