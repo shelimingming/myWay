@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>model</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<p th:text="'Hello！, ' + ${name} + '!'">3333</p>
+
+<span th:text="'Welcome to our application, ' + ${user.name} + '!'"/>
+<span th:text="|Welcome to our application, ${user.name}!|" />
+
+</body>
+</html>
