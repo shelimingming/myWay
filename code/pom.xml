@@ -15,6 +15,7 @@
         <module>myway-demo-mybatis</module>
         <module>myway-demo-hsql</module>
         <module>myway-demo-thymeleaf</module>
+        <module>myway-demo-springboot</module>
     </modules>
 
 </project>
