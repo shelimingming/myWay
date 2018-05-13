@@ -1,19 +1,17 @@
 package com.myway.demo.mybatis.domain;
 
 import java.util.Date;
-import java.util.List;
 
 public class User {
-    private int id;
+    private Long id;
     private String name;
     private Date createTime;
-    private List<Post> posts;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -33,21 +31,12 @@ public class User {
         this.createTime = createTime;
     }
 
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", createTime=" + createTime +
-                ", posts=" + posts +
                 '}';
     }
 }

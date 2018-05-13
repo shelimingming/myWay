@@ -2,74 +2,67 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.myway.demo.mybatis.dao.IUser">
-    <select id="GetUserByID" parameterType="int" resultType="User">
-        select * from demo_user where id = #{id}
-    </select>
-
-    <select id="getUser" parameterType="int"
-            resultType="User">
-        SELECT *
-        FROM demo_user
-        WHERE id = #{userId}
+<mapper namespace="com.myway.demo.mybatis.dao.UserDao">
+    <select id="getUserById" parameterType="long" resultType="User" >
+        select id,name,create_time as createTime from demo_mybatis_user where id = #{id}
     </select>
 
 
     <insert id="insertUser" parameterType="User">
-        INSERT INTO demo_user(name, createTime)
+        INSERT INTO demo_mybatis_user(name, create_time)
         VALUES(#{name}, #{createTime})
     </insert>
 
     <select id="getUserList" resultType="User">
-        SELECT * FROM demo_user
+      SELECT id,name,create_time as createTime FROM demo_mybatis_user
     </select>
 
     <update id="updateUser" parameterType="User">
-        UPDATE demo_user
+        UPDATE demo_mybatis_user
         SET
         name = #{name},
-        createTime = #{createTime},
+        create_time = #{createTime}
         WHERE
         id = #{id}
     </update>
 
-    <delete id="deleteUser" parameterType="int">
-        DELETE FROM demo_user WHERE id = #{id}
+    <delete id="deleteUser" parameterType="long">
+        DELETE FROM demo_mybatis_user WHERE id = #{id}
     </delete>
 
-    <!-- User 级联文章查询 方法配置 (一个用户对多个文章)  -->
-    <resultMap type="User" id="resultUserMap">
-        <result property="id" column="id" />
-        <result property="name" column="name" />
-        <result property="createTime" column="createTime" />
-        <collection property="posts" ofType="Post" column="userid">
-            <id property="id" column="id" javaType="int" jdbcType="INTEGER"/>
-            <result property="title" column="title" javaType="string" jdbcType="VARCHAR"/>
-            <result property="content" column="content" javaType="string" jdbcType="VARCHAR"/>
-        </collection>
-    </resultMap>
+    <!--&lt;!&ndash; User 级联文章查询 方法配置 (一个用户对多个文章)  &ndash;&gt;-->
+    <!--<resultMap type="User" id="resultUserMap">-->
+    <!--<result property="id" column="id" />-->
+    <!--<result property="name" column="name" />-->
+    <!--<result property="createTime" column="createTime" />-->
+    <!--<collection property="posts" ofType="Post" column="userid">-->
+    <!--<id property="id" column="id" javaType="int" jdbcType="INTEGER"/>-->
+    <!--<result property="title" column="title" javaType="string" jdbcType="VARCHAR"/>-->
+    <!--<result property="content" column="content" javaType="string" jdbcType="VARCHAR"/>-->
+    <!--</collection>-->
+    <!--</resultMap>-->
 
-    <select id="getUserWithPost" resultMap="resultUserMap" parameterType="int">
-        SELECT u.id as user_id, u.name,u.createTime,p.id as post_id,p.title, p.content
-        FROM demo_user u, demo_post p
-        WHERE u.id=p.user_id AND u.id=#{id}
-    </select>
+    <!--<select id="getUserWithPost" resultMap="resultUserMap" parameterType="int">-->
+    <!--SELECT u.id as user_id, u.name,u.createTime,p.id as post_id,p.title, p.content-->
+    <!--FROM demo_user u, demo_post p-->
+    <!--WHERE u.id=p.user_id AND u.id=#{id}-->
+    <!--</select>-->
 
-    <!-- User 级联文章查询 方法配置 (多个文章对一个用户)  -->
-    <resultMap type="Post" id="resultPostsMap">
-        <result property="id" column="post_id" />
-        <result property="title" column="title" />
-        <result property="content" column="content" />
-        <association property="user" javaType="User">
-            <id property="id" column="id"/>
-            <result property="name" column="name"/>
-            <result property="createTime" column="createTime"/>
-        </association>
-    </resultMap>
+    <!--&lt;!&ndash; User 级联文章查询 方法配置 (多个文章对一个用户)  &ndash;&gt;-->
+    <!--<resultMap type="Post" id="resultPostsMap">-->
+    <!--<result property="id" column="post_id" />-->
+    <!--<result property="title" column="title" />-->
+    <!--<result property="content" column="content" />-->
+    <!--<association property="user" javaType="User">-->
+    <!--<id property="id" column="id"/>-->
+    <!--<result property="name" column="name"/>-->
+    <!--<result property="createTime" column="createTime"/>-->
+    <!--</association>-->
+    <!--</resultMap>-->
 
-    <select id="getPostsWithUser" resultMap="resultPostsMap" parameterType="int">
-        SELECT u.id as user_id, u.name,u.createTime,p.id as post_id,p.title, p.content
-        FROM demo_user u, demo_post p
-        WHERE u.id=p.user_id AND p.id=#{id}
-    </select>
+    <!--<select id="getPostsWithUser" resultMap="resultPostsMap" parameterType="int">-->
+    <!--SELECT u.id as user_id, u.name,u.createTime,p.id as post_id,p.title, p.content-->
+    <!--FROM demo_user u, demo_post p-->
+    <!--WHERE u.id=p.user_id AND p.id=#{id}-->
+    <!--</select>-->
 </mapper>
