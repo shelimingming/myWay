@@ -7,5 +7,103 @@
 		select `id`,`acct`,`name`,`mobile`,`email`,`description`,`status`,`password`,`createTime`,`lastLoginTime` from user where id = #{value}
 	</select>
 
+    <select id="list" resultType="com.myway.rbac.domain.UserDO">
+        select `id`,`acct`,`name`,`mobile`,`email`,`description`,`status`,`password`,`createTime`,`lastLoginTime` from
+        user
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="acct != null and acct != ''">and acct = #{acct}</if>
+            <if test="name != null and name != ''">and name = #{name}</if>
+            <if test="mobile != null and mobile != ''">and mobile = #{mobile}</if>
+            <if test="email != null and email != ''">and email = #{email}</if>
+            <if test="description != null and description != ''">and description = #{description}</if>
+            <if test="status != null and status != ''">and status = #{status}</if>
+            <if test="password != null and password != ''">and password = #{password}</if>
+            <if test="createTime != null and createTime != ''">and createTime = #{createTime}</if>
+            <if test="lastLoginTime != null and lastLoginTime != ''">and lastLoginTime = #{lastLoginTime}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from user
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="acct != null and acct != ''">and acct = #{acct}</if>
+            <if test="name != null and name != ''">and name = #{name}</if>
+            <if test="mobile != null and mobile != ''">and mobile = #{mobile}</if>
+            <if test="email != null and email != ''">and email = #{email}</if>
+            <if test="description != null and description != ''">and description = #{description}</if>
+            <if test="status != null and status != ''">and status = #{status}</if>
+            <if test="password != null and password != ''">and password = #{password}</if>
+            <if test="createTime != null and createTime != ''">and createTime = #{createTime}</if>
+            <if test="lastLoginTime != null and lastLoginTime != ''">and lastLoginTime = #{lastLoginTime}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.myway.rbac.domain.UserDO" useGeneratedKeys="true" keyProperty="id">
+		insert into user
+		(
+			`id`,
+			`acct`,
+			`name`,
+			`mobile`,
+			`email`,
+			`description`,
+			`status`,
+			`password`,
+			`createTime`,
+			`lastLoginTime`
+		)
+		values
+		(
+			#{id},
+			#{acct},
+			#{name},
+			#{mobile},
+			#{email},
+			#{description},
+			#{status},
+			#{password},
+			#{createTime},
+			#{lastLoginTime}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.myway.rbac.domain.UserDO">
+        update user
+        <set>
+            <if test="acct != null">`acct` = #{acct},</if>
+            <if test="name != null">`name` = #{name},</if>
+            <if test="mobile != null">`mobile` = #{mobile},</if>
+            <if test="email != null">`email` = #{email},</if>
+            <if test="description != null">`description` = #{description},</if>
+            <if test="status != null">`status` = #{status},</if>
+            <if test="createTime != null">`createTime` = #{createTime},</if>
+            <if test="lastLoginTime != null">`lastLoginTime` = #{lastLoginTime},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from user where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from user where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>
