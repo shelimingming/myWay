@@ -16,6 +16,7 @@
         <module>myway-demo-hsql</module>
         <module>myway-demo-thymeleaf</module>
         <module>myway-demo-springboot</module>
+        <module>myway-demo-log4j</module>
     </modules>
 
 </project>
