@@ -5,23 +5,31 @@
 
     <properties resource="mybatis/db.property"></properties>
 
+    <settings>
+        <!-- 打印查询语句 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+
     <typeAliases>
-        <typeAlias alias="User" type="com.myway.demo.mybatis.domain.User" />
+        <typeAlias alias="User" type="com.myway.demo.mybatis.domain.User"/>
     </typeAliases>
 
     <environments default="development">
         <environment id="development">
-            <transactionManager type="JDBC" />
+            <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-                <property name="driver" value="${jdbc.driver}" />
-                <property name="url" value="${jdbc.url}" />
-                <property name="username" value="${jdbc.username}" />
-                <property name="password" value="${jdbc.password}" />
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
             </dataSource>
         </environment>
     </environments>
 
     <mappers>
-        <mapper resource="mybatis/model/User.xml" />
+        <mapper resource="mybatis/model/User.xml"/>
+        <mapper resource="mybatis/model/Department.xml"/>
     </mappers>
 </configuration>

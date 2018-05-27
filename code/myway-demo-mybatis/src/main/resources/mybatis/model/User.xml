@@ -3,8 +3,63 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.myway.demo.mybatis.dao.UserDao">
-    <select id="getUserById" parameterType="long" resultType="User" >
+    <select id="getUserById" parameterType="long" resultType="User">
         select id,name,create_time as createTime from demo_mybatis_user where id = #{id}
+    </select>
+
+    <select id="getUserAndDepById" parameterType="long" resultMap="UserDepMap">
+        select u.id,u.name,u.create_time,d.id as did,d.name as dname
+        from demo_mybatis_user u,demo_mybatis_department d
+        where u.id=d.id and u.id=#{id}
+    </select>
+
+    <!--使用联合主键的方式-->
+    <!--<resultMap id="UserDepMap" type="User">-->
+    <!--<id property="id" column="id"/>-->
+    <!--<result property="name" column="name"/>-->
+    <!--<result property="createTime" column="create_time"/>-->
+    <!--<result property="department.id" column="did"/>-->
+    <!--<result property="department.name" column="dname"/>-->
+    <!--</resultMap>-->
+
+    <!--使用association-->
+    <resultMap id="UserDepMap" type="User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="createTime" column="create_time"/>
+        <association property="department" javaType="com.myway.demo.mybatis.domain.Department">
+            <id property="id" column="did"/>
+            <result property="name" column="dname"/>
+        </association>
+    </resultMap>
+
+
+    <select id="getUserAndDepByIdByStep" parameterType="long" resultMap="UserDepMapByStep">
+        select * from demo_mybatis_user where id = #{id}
+    </select>
+    <!--使用association分步查询-->
+    <resultMap id="UserDepMapByStep" type="User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="createTime" column="create_time"/>
+        <association property="department" select="com.myway.demo.mybatis.dao.DepartmentDao.getDepartmentById"
+                     column="department_id">
+        </association>
+    </resultMap>
+
+    <!--<select id="getUserAndRoleById" parameterType="long" resultType="UserMap">-->
+    <!--select id,name,create_time as createTime from demo_mybatis_user where id = #{id}-->
+    <!--</select>-->
+
+    <!--<resultMap id="UserMap" type="User">-->
+    <!--<id property="id" column="id"/>-->
+    <!--<result property="name" column="name"/>-->
+    <!--<result property="createTime" column="create_time"/>-->
+    <!--<association property="roleList"-->
+    <!--</resultMap>-->
+
+    <select id="getUserByDepartmentId" parameterType="long" resultType="User">
+        select id,name,create_time as createTime from demo_mybatis_user where department_id = #{id}
     </select>
 
 
