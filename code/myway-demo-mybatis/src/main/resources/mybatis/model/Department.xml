@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myway.demo.mybatis.dao.DepartmentDao">
+    <select id="getDepartmentById" resultType="com.myway.demo.mybatis.domain.Department">
+        select id, name from demo_mybatis_department where id = #{id}
+    </select>
+
+    <select id="getDepartmentHasUserById" resultMap="departmentHasUser">
+        select d.id , d.name ,u.id u_id,u.name u_name,u.create_time createTime
+        from demo_mybatis_department d left join demo_mybatis_user u
+        on d.id=u.department_id
+        where d.id = #{id}
+    </select>
+
+    <resultMap id="departmentHasUser" type="com.myway.demo.mybatis.domain.Department">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <collection property="userList" ofType="com.myway.demo.mybatis.domain.User">
+            <id property="id" column="u_id"/>
+            <result property="name" column="u_name"/>
+            <result property="createTime" column="createTime"/>
+        </collection>
+    </resultMap>
+
+
+    <!--分部查询-->
+    <select id="getDepartmentHasUserByIdByStep" resultMap="departmentHasUserByStep">
+        select d.id , d.name
+        from demo_mybatis_department d
+        where d.id = #{id}
+    </select>
+
+    <resultMap id="departmentHasUserByStep" type="com.myway.demo.mybatis.domain.Department">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <collection property="userList" select="com.myway.demo.mybatis.dao.UserDao.getUserByDepartmentId" column="id"
+                    fetchType="eager">
+        </collection>
+    </resultMap>
+
+
+</mapper>
