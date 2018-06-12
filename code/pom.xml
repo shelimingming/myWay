@@ -17,6 +17,9 @@
         <module>myway-demo-thymeleaf</module>
         <module>myway-demo-springboot</module>
         <module>myway-demo-log4j</module>
+        <module>myway-demo-springmvc</module>
+        <module>myway-demo-ssm</module>
+        <module>myway-demo-mabatis-generator</module>
     </modules>
 
 </project>
