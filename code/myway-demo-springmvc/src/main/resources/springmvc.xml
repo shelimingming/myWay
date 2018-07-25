@@ -23,4 +23,14 @@
         <property name="maxUploadSize" value="1048576"></property>
     </bean>
 
+    <!--自定义的拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--path 是/api/get也可以/api/get/* 这样就拦截了前缀是/api/get的Controller-->
+            <mvc:mapping path="/api/get.shtml"/>
+            <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+            <bean class="com.myway.intercept.UserInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>

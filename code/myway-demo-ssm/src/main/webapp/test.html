@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+
+</head>
+<body>
+
+<div>
+    <ol>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+    </ol>
+</div>
+
+<div>
+    <ul>
+        <li>aaa</li>
+        <li>aaa</li>
+        <li>aaa</li>
+    </ul>
+</div>
+
+<div>
+    <dl>
+        <dd>aaa</dd>
+        <dt>xxx</dt>
+        <dt>xxx</dt>
+    </dl>
+</div>
+<hr/>
+
+<form name="regForm" action="http://baidu.com" method="post">
+    单行文本框<input type="text" name="username" id="username" maxlength="5"/><br/>
+    <label for="password">密码框</label> <input type="password" name="password" id="password"/><br/>
+    隐藏文本框<input type="hidden" name="hidden" id="hidden"/><br/>
+    单选按钮：<input type="radio" name="sex" id="male" checked="checked"/>男
+    <input type="radio" name="sex" id="female"/>女<br/>
+    复选框<input type="checkbox" name="hobby" id="basketball" value="1" checked="checked"/>篮球
+    <input type="checkbox" name="hobby" id="football" value="2"/>足球<br/>
+    图像域<input type="image" width="200px" height="100px" src="./resources/images/error.gif"/><br/>
+    提交按钮<input type="submit" name="submit" id="submit"/><br/>
+    重置按钮<input type="reset" name="reset" id="reset"/><br/>
+    普通按钮<input type="button" name="button" id="button"/><br/>
+
+    button按钮
+    <button type="submit" name="button"><b>button</b></button>
+
+    复选框
+    <select name="city">
+        <option value="beijin">北京</option>
+        <option value="shanghai">上海</option>
+        <option value="nanjin">南京</option>
+    </select>
+
+    <select name="county" multiple="multiple" size="2">
+        <option value="china">中国</option>
+        <option value="美国">美国</option>
+        <option value="nanjin">南京</option>
+    </select>
+    <br/>
+
+    多行文本框
+    <textarea cols="28" rows="3" name="textarea">
+        1212121
+        1212121
+        2121
+    </textarea>
+
+</form>
+
+
+<hr/>
+
+<table width="500px" border="1" cellpadding="1" cellspacing="0">
+    <caption>我最喜欢的歌曲</caption>
+    <thead>
+    <tr>
+        <th>歌名</th>
+        <th>歌手</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>小幸运</td>
+        <td>田馥甄</td>
+    </tr>
+    <tr>
+        <td>成都</td>
+        <td rowspan="2">赵雷</td>
+    </tr>
+    <tr>
+        <td>南方姑娘</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="2" align="right">总计3首</td>
+    </tr>
+    </tfoot>
+</table>
+
+
+<hr/>
+
+<iframe name="topIFrame" width="100%" height="400px" src="http://www.baidu.com" scrolling="auto"
+        frameborder="1"></iframe>
+<br/>
+<a href="http://www.sina.com" target="topIFrame">sina</a>
+<a href="http://www.baidu.com" target="topIFrame">baidu</a>
+
+<hr/>
+&nbsp;aa
+
+
+</body>
+</html>

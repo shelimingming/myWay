@@ -55,12 +55,14 @@
         </javaClientGenerator>
 
         <!-- 表名对应生成的实体 -->
-        <table tableName="user" domainObjectName="UserDo"/>
-        <table tableName="role" domainObjectName="RoleDo"/>
-        <table tableName="auth" domainObjectName="AuthDo"/>
-        <table tableName="user_auth" domainObjectName="UserAuthDo"/>
-        <table tableName="user_role" domainObjectName="UserRoleDo"/>
-        <table tableName="role_auth" domainObjectName="RoleAuthDo"/>
+        <table tableName="sys_menu" domainObjectName="MenuDo"/>
+
+        <!--<table tableName="user" domainObjectName="UserDo"/>-->
+        <!--<table tableName="role" domainObjectName="RoleDo"/>-->
+        <!--<table tableName="auth" domainObjectName="AuthDo"/>-->
+        <!--<table tableName="user_auth" domainObjectName="UserAuthDo"/>-->
+        <!--<table tableName="user_role" domainObjectName="UserRoleDo"/>-->
+        <!--<table tableName="role_auth" domainObjectName="RoleAuthDo"/>-->
         <!-- enableCountByExample="false" enableUpdateByExample="false"
         enableDeleteByExample="false" enableSelectByExample="false"
         selectByExampleQueryId="false">  指定是否生成操作数据库对应的方法 -->

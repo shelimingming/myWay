@@ -6,11 +6,18 @@
             <!--输出日志的格式-->
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
+
+        <File name="MyFile" fileName="logs/app.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
     </Appenders>
     <Loggers>
         <!-- 只让这个Logger输出trace信息，其他都是error级别 -->
-        <Logger name="com.myway.helloworld.HelloLog4j" level="trace" additivity="false">
+        <Logger name="com.myway.helloworld.HelloLog4j" level="error" additivity="false">
             <Appender-ref ref="Console"/>
+            <Appender-ref ref="MyFile"/>
         </Logger>
         <Root level="error">
             <AppenderRef ref="Console"/>
