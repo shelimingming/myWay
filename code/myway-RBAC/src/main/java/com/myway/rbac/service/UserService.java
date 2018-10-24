@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Service
 public interface UserService {
-    UserDO get(Long id);
+    UserDO get(Integer id);
 
     List<UserDO> list(Map<String, Object> map);
 

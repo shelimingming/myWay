@@ -1,10 +1,16 @@
 package com.myway.rbac.service.impl;
 
-import com.myway.rbac.dao.UserDao;
+import com.myway.rbac.dao.UserDOMapper;
+import com.myway.rbac.domain.AuthDO;
+import com.myway.rbac.domain.RoleDO;
 import com.myway.rbac.domain.UserDO;
+import com.myway.rbac.domain.UserDOExample;
+import com.myway.rbac.service.AuthService;
+import com.myway.rbac.service.RoleService;
 import com.myway.rbac.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -13,22 +19,44 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserDao userMapper;
+    UserDOMapper userDOMapper;
+
+    @Autowired
+    AuthService authService;
+
+    @Autowired
+    RoleService roleService;
 
     @Override
-    public UserDO get(Long id) {
-        UserDO user = userMapper.get(id);
-        return user;
+    public UserDO get(Integer id) {
+        UserDOExample example = new UserDOExample();
+        example.createCriteria().andIdEqualTo(id);
+        List<UserDO> userDOList = userDOMapper.selectByExample(example);
+
+        if(CollectionUtils.isEmpty(userDOList)) {
+            return null;
+        }else{
+            UserDO userDO = userDOList.get(0);
+
+            List<RoleDO> roleDOList = roleService.getByUserId(userDO.getId());
+            userDO.setRoleList(roleDOList);
+
+
+            List<AuthDO> authDOList = authService.getByUserId(userDO.getId());
+            userDO.setAuthDOList(authDOList);
+
+            return userDO;
+        }
     }
 
     @Override
     public List<UserDO> list(Map<String, Object> map) {
-        return userMapper.list(map);
+        return null;
     }
 
     @Override
     public int count(Map<String, Object> map) {
-        return userMapper.count(map);
+        return 0;
     }
 
 }

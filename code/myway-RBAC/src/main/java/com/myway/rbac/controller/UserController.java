@@ -19,7 +19,7 @@ public class UserController {
     UserService userService;
 
     @RequestMapping("/get")
-    public UserDO get(Long id) {
+    public UserDO get(Integer id) {
         UserDO user = userService.get(id);
         return user;
     }

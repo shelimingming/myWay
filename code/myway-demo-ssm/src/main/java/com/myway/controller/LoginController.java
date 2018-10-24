@@ -18,7 +18,7 @@ public class LoginController {
         boolean loginRes = userService.login(username, password);
         System.out.println("loginRes:" + loginRes);
         if (loginRes) {
-            return "index.jsp";
+            return "/WEB-INF/index.jsp";
         } else {
             return "../../login.jsp";
         }
